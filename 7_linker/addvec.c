@@ -7,5 +7,5 @@ void addvec(int *restrict x, int *restrict y,
     addcnt++;
 
     for (i = 0; i < n; i++)
-        z[i] = z[i] + y[i];
+        z[i] = x[i] + y[i];
 }
