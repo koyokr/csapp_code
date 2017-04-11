@@ -10,4 +10,3 @@ int main() {
     printf("z = [%d %d]\n", z[0], z[1]);
     return 0;
 }
-

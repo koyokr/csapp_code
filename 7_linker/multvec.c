@@ -9,4 +9,3 @@ void multvec(int *restrict x, int *restrict y,
     for (i = 0; i < n; i++)
         z[i] = x[i] * y[i];
 }
-

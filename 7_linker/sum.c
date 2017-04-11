@@ -6,4 +6,3 @@ int sum(int *a, int n) {
     }
     return s;
 }
-

@@ -47,4 +47,3 @@ $(VECTOR_OBJECTS): $(VECTOR_SOURCES)
 
 clean:
 	rm -f $(TARGETS) *.o *.a *.so
-

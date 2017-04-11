@@ -10,4 +10,3 @@ int main() {
            x, y);
     return 0;
 }
-

@@ -7,4 +7,3 @@ typedef struct {
     long  value;
     long  size;
 } Elf64_Symbol;
-
