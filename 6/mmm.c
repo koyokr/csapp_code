@@ -1,7 +1,7 @@
 void mmm(int n,
-         double (*restrict a)[n],
-         double (*restrict b)[n],
-         double (*restrict c)[n])
+         double a[restrict][n],
+         double b[restrict][n],
+         double c[restrict][n])
 {
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
@@ -9,13 +9,12 @@ void mmm(int n,
                 c[i][j] += a[i][k] * b[k][j];
 }
 
-#define CACHE_LINE_SIZE 128
 void mmm2(int n,
-          double (*restrict a)[n],
-          double (*restrict b)[n],
-          double (*restrict c)[n])
+          double a[restrict][n],
+          double b[restrict][n],
+          double c[restrict][n])
 {
-    int B = CACHE_LINE_SIZE / sizeof(double);
+    int B = 16;
     for (int i = 0; i < n; i += B)
         for (int j = 0; j < n; j += B)
             for (int k = 0; k < n; k += B)
@@ -25,6 +24,9 @@ void mmm2(int n,
                             c[x][y] += a[x][z] * b[z][y];
 }
 
+#define CACHE_SIZE      32 * 1024
+#define CACHE_LINE_SIZE 64
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -32,7 +34,11 @@ void mmm2(int n,
 #define LEN 1024
 typedef double matrix[LEN][LEN], (*pmatrix)[LEN];
 
-double test(void (function)(int n, double (*)[n], double (*)[n], double (*)[n]))
+
+double test(void (f)(int n,
+                     double [][n],
+                     double [][n],
+                     double [][n]))
 {
     int n = LEN;
     pmatrix a = aligned_alloc(CACHE_LINE_SIZE, sizeof(matrix));
@@ -44,7 +50,7 @@ double test(void (function)(int n, double (*)[n], double (*)[n], double (*)[n]))
     long int nsec;
 
     clock_gettime(CLOCK_MONOTONIC, &start);
-    function(n, a, b, c);
+    f(n, a, b, c);
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     sec = end.tv_sec - start.tv_sec;
@@ -63,16 +69,16 @@ int main(void)
     int count = 10;
     double sum_s;
 
+    printf("mmm2\n");
+    sum_s = 0.0;
+    for (int i = 0; i < count; i++)
+        sum_s += test(mmm2);
+    printf("average: %.9lf\n", sum_s / count);
+
     printf("mmm\n");
     sum_s = 0.0;
     for (int i = 0; i < count; i++)
         sum_s += test(mmm);
-    printf("average: %.9lf\n", sum_s / count);
-
-    printf("mmm2\n");
-    sum_s = 0.0;
-    for (int i = 0; i < count; i++)
-    	sum_s += test(mmm2);
     printf("average: %.9lf\n", sum_s / count);
 
     return 0;
