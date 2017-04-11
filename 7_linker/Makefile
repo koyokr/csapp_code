@@ -2,7 +2,7 @@ CC = gcc
 AR = ar
 CFLAGS = -W -Wall
 
-TARGETS = prog prog2c prog2l prog2r foobar3 foobar4 foobar5
+TARGETS = prog prog2c prog2l prog2r foobar3 foobar4 foobar5 foobar6
 
 VECTOR_LIBRARY = libvector
 VECTOR_SOURCES = addvec.c multvec.c
