@@ -2,7 +2,7 @@ CC = gcc
 AR = ar
 CFLAGS = -W -Wall
 
-TARGETS = prog prog2c prog2l prog2r
+TARGETS = prog prog2c prog2l prog2r foobar3 foobar4 foobar5
 
 VECTOR_LIBRARY = libvector
 VECTOR_SOURCES = addvec.c multvec.c
@@ -23,6 +23,16 @@ prog2l: main2.c $(VECTOR_LIBRARY).so
 	
 prog2r: dll.c
 	$(CC) $(CFLAGS) -O2 -rdynamic -o $@ $^ -ldl
+
+
+foobar3: foo3.c bar3.c
+	$(CC) $(CFLAGS) -O2 -o $@ $^
+
+foobar4: foo4.c bar4.c
+	$(CC) $(CFLAGS) -O2 -o $@ $^
+
+foobar5: foo5.c bar5.c
+	$(CC) $(CFLAGS) -O2 -o $@ $^
 
 
 $(VECTOR_LIBRARY).a: $(VECTOR_OBJECTS)
