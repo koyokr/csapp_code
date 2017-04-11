@@ -8,3 +8,5 @@ typedef struct {
     data_t *data;
 } vec_rec, *vec_ptr;
 
+long vec_length(vec_ptr v);
+data_t *get_vec_start(vec_ptr v);
