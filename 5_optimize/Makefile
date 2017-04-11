@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -W -Wall -mavx2 -O1 -S
+CFLAGS = -W -Wall -mavx2 -S
 TARGETS = lower.s set_row.s simd.s sum.s sum_rows.s vec.s
 
 
@@ -7,22 +7,22 @@ all: $(TARGETS)
 
 
 lower.s: lower.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -O1 $^
 
 set_row.s: set_row.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -O1 $^
 
 simd.s: simd.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -O3 $^
 
 sum.s: sum.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -O1 $^
 
 sum_rows.s: sum_rows.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -O1 $^
 
 vec.s: vec.c
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -O1 $^
 
 
 clean:
