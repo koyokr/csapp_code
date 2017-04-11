@@ -34,6 +34,9 @@ foobar4: foo4.c bar4.c
 foobar5: foo5.c bar5.c
 	$(CC) $(CFLAGS) -O2 -o $@ $^
 
+foobar6: foo6.c bar6.c
+	$(CC) $(CFLAGS) -O2 -o $@ $^
+
 
 $(VECTOR_LIBRARY).a: $(VECTOR_OBJECTS)
 	$(AR) rcs $@ $^
