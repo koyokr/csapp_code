@@ -5,7 +5,7 @@ SOURCES = int.c mymalloc.c
 
 all: $(TARGETS)
 
-intc: $(SOURCES)
+intc: $(SOURCES) malloc.h
 	$(CC) -DCOMPILETIME -c mymalloc.c
 	$(CC) -I. -o $@ int.c mymalloc.o
 
@@ -20,6 +20,3 @@ intr: $(SOURCES)
 
 clean:
 	rm -f $(TARGETS) *.o *.so
-
-
-
