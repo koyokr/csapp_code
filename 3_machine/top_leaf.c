@@ -6,7 +6,7 @@ long top(long x) {
     return leaf(x - 5) * 2;
 }
 
-long main() {
+int main() {
     return top(100);
 }
 

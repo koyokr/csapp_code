@@ -15,10 +15,10 @@ all: $(TARGETS)
 prog: main.c sum.c
 	$(CC) $(CFLAGS) -o $@ $^
 
-prog2c: main2.c $(VECTOR_LIBRARY).a
-	$(CC) $(CFLAGS) -static -o $@ $^
+prog2c: main2.c vector.h $(VECTOR_LIBRARY).a
+	$(CC) $(CFLAGS) -static -o $@ main2.c -L. -lvector
 
-prog2l: main2.c $(VECTOR_LIBRARY).so
+prog2l: main2.c vector.h $(VECTOR_LIBRARY).so
 	$(CC) $(CFLAGS) -o $@ main2.c ./$(VECTOR_LIBRARY).so
 	
 prog2r: dll.c
