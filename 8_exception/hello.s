@@ -8,11 +8,11 @@ main:
 	.cfi_startproc
 	movq	$1, %rax
 	movq	$13, %rdx
-	movq	$string, %rsi
+	leaq	.LC0(%rip), %rsi
 	movq	$1, %rdi
-	call	write@PLT
+	syscall
 
 	movq	$60, %rax
 	movq	$0, %rdi
-	call	_exit@PLT
+	syscall
 	.cfi_endproc
