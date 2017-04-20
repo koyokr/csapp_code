@@ -46,4 +46,4 @@ libcsapp.so: ../src/csapp.c
 	$(CC) $(CFLAGS) -shared -fpic -o $@ $<
 
 clean:
-	rm -f $(TARGETS) *.o *.a
+	rm -f $(TARGETS) *.o *.so
