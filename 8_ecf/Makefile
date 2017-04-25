@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -I../include/ -O2
 TARGETS = hello waitpid1 waitpid2 shellex kill sigint signal1 signal2 \
-	  procmask1 procmask2 waitforsignal sigsuspend
+	  procmask1 procmask2 waitforsignal sigsuspend setjmp restart
 LIBS = ./libcsapp.so -pthread
 
 all: $(TARGETS)
@@ -40,6 +40,12 @@ waitforsignal: waitforsignal.c libcsapp.so
 	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
 
 sigsuspend: sigsuspend.c libcsapp.so
+	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
+
+setjmp: setjmp.c libcsapp.so
+	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
+
+restart: restart.c libcsapp.so
 	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
 
 libcsapp.so: ../src/csapp.c
