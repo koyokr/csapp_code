@@ -6,7 +6,7 @@ volatile sig_atomic_t pid;
 void sigchld_handler(int s)
 {
 	int olderrno = errno;
-	pid = waitpid(-1, NULL, 0);
+	pid = Waitpid(-1, NULL, 0);
 	errno = olderrno;
 }
 

@@ -29,7 +29,7 @@ void handler(int sig)
 	errno = olderrno;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	pid_t pid;
 	sigset_t mask_all, prev_all;

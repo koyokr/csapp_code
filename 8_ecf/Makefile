@@ -1,8 +1,8 @@
 CC = gcc
 CFLAGS = -I../include/ -O2
 TARGETS = hello waitpid1 waitpid2 shellex kill sigint signal1 signal2 \
-	  procmask1 procmask2 waitforsignal sigsuspend setjmp restart \
-	  fork
+	  procmask1 procmask2 waitforsignal waitforsignal2 waitforsignal3 \
+	  sigsuspend setjmp restart fork
 LIBCSAPP = libcsapp.so
 LIBS = ./$(LIBCSAPP) -pthread
 
@@ -39,6 +39,12 @@ procmask2: procmask2.c $(LIBCSAPP)
 	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
 
 waitforsignal: waitforsignal.c $(LIBCSAPP)
+	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
+
+waitforsignal2: waitforsignal2.c $(LIBCSAPP)
+	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
+
+waitforsignal3: waitforsignal3.c $(LIBCSAPP)
 	$(CC) $(CFLAGS) -o $@ $< $(LIBS)
 
 sigsuspend: sigsuspend.c $(LIBCSAPP)

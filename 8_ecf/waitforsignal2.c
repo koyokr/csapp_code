@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		Sigprocmask(SIG_SETMASK, &prev, NULL); // Unblock SIGCHLD
 
 		while (!pid)
-			;
+			pause();
 
 		printf(".");
 	}
